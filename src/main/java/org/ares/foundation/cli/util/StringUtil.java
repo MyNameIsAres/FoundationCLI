@@ -6,11 +6,12 @@ import java.util.Arrays;
 public class StringUtil {
 
     private static String checkCapital(String name) {
-        boolean isUpperCase =  Character.isUpperCase(name.codePointAt(0));
+        boolean isUpperCase = Character.isUpperCase(name.codePointAt(0));
 
         return isUpperCase ? name : StringUtils.capitalize(name);
 
     }
+
     public static String getCommandName(String name) {
         if (!name.contains("Command")) {
             return name;
@@ -21,7 +22,6 @@ public class StringUtil {
                 .replace("]", "");
 
     }
-
 
 
     public static String addCommandLabel(String className) {
@@ -113,6 +113,7 @@ public class StringUtil {
     public static String addQuestLabel(String className) {
         return !className.contains("Quest") ? className + "Quest" : className;
     }
+
     public static String getClassName(String name) {
         if (!name.contains("Class")) {
             return name;
@@ -182,6 +183,7 @@ public class StringUtil {
     public static String addPromptLabel(String className) {
         return !className.contains("Prompt") ? className + "Prompt" : className;
     }
+
     public static String getConversationName(String name) {
         if (!name.contains("Conversation")) {
             return name;
@@ -241,6 +243,11 @@ public class StringUtil {
     }
 
     public static String addMenuLabel(String className) {
-        return !className.contains("Menu") ? className + "Menu" : className;
+        return className.contains("Menu") ? className + "Menu" : className;
+    }
+
+    // By convention we do want the "Listener" postfix
+    public static String addListenerLabel(String className) {
+        return !className.contains("Listener") ? className + "Listener" : className;
     }
 }

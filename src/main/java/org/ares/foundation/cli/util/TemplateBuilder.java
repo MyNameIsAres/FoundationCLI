@@ -22,6 +22,15 @@ public class TemplateBuilder {
         return null;
     }
 
+    public Writer createFileWriterGroup(String propertyKey, String commandGroupPath, String name) {
+        try {
+            return new FileWriter(yamlHandler.getTargetLocation(yamlHandler.getProjectPath(), yamlHandler.getKeyValue(propertyKey) + "/" + commandGroupPath , name) + ".java");
+        } catch (IOException | NullPointerException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return null;
+    }
+
     public void flushFileWriter(Writer writer) {
         try {
             writer.flush();

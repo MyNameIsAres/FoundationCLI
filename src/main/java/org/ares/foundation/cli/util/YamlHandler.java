@@ -69,7 +69,7 @@ public class YamlHandler {
         return packageName;
     }
 
-    public String getCommandGroupPackageName(String key, String packageName) {
+    public String getGroupPackageName(String key, String packageName) {
         String newPackageName = this.getProjectPath() + this.getKeyValue(key) + "." +packageName;
         newPackageName = newPackageName.replace("/", ".");
 

@@ -8,18 +8,14 @@ import picocli.CommandLine.Parameters;
 
 import java.io.Writer;
 
-// TODO: Create options for different types
 @Command(name = "make:listener", aliases = "make:l")
 public class CreateEventListener implements Runnable, Buildable {
 
     @Parameters()
-    private String name;
+    private String name = "";
 
     @Parameters(defaultValue = "")
     private final String eventType = "";
-
-    @Parameters(defaultValue = "")
-    private final String subPackageName = "";
 
     final static String PROPERTY_KEY = "listener_location";
 
@@ -32,7 +28,7 @@ public class CreateEventListener implements Runnable, Buildable {
     public VelocityContext buildContext() {
         VelocityContext context = new VelocityContext();
 
-        context.put("PACKAGE_NAME", "");
+        context.put("PACKAGE_NAME", PACKAGE_NAME);
         context.put("CLASS_NAME", StringUtil.addListenerLabel(name));
 
         return context;
@@ -40,8 +36,6 @@ public class CreateEventListener implements Runnable, Buildable {
 
     @Override
     public void run() {
-        final String packageName =  PackageHandler.createPackage(name, subPackageName, PROPERTY_KEY);
-
         TemplateBuilder templateBuilder = new TemplateBuilder();
         Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, StringUtil.addListenerLabel(name));
         templateBuilder.createTemplate(writer, template + getEventType(eventType), buildContext());

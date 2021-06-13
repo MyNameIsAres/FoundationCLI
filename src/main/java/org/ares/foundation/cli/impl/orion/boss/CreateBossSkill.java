@@ -15,7 +15,7 @@ import java.io.Writer;
         mixinStandardHelpOptions = true,
         customSynopsis = "fo make:bossskill <name>, fo make:bskill <name>, fo make:boss-skill <name>",
         version = "1.0")
-class CreateBossSkill implements Runnable, Buildable {
+public class CreateBossSkill implements Runnable, Buildable {
 
     @Parameters()
     private String name;

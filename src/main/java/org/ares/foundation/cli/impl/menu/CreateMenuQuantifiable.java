@@ -15,7 +15,7 @@ import java.io.Writer;
         mixinStandardHelpOptions = true,
         customSynopsis = "fo make:menuquantifiable <name> | fo make:menuq <name>",
         version = "1.0")
-public class MenuQuantitable implements Runnable, Buildable {
+public class CreateMenuQuantifiable implements Runnable, Buildable {
 
     @Parameters()
     private String name;

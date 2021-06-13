@@ -1,16 +1,20 @@
 package org.ares.foundation.cli.impl.conversation;
 
 import org.apache.velocity.VelocityContext;
-import org.ares.foundation.cli.Buildable;
-import org.ares.foundation.cli.util.StringUtil;
-import org.ares.foundation.cli.util.TemplateBuilder;
-import org.ares.foundation.cli.util.YamlHandler;
+import org.ares.foundation.cli.util.Buildable;
+import org.ares.foundation.cli.util.string.StringUtil;
+import org.ares.foundation.cli.util.template.TemplateBuilder;
+import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 import java.io.Writer;
 
-@Command(name = "make:prompt")
+@Command(name = "make:prompt",
+        description = "Create a simple prompt",
+        mixinStandardHelpOptions = true,
+        customSynopsis = "fo make:prompt <name>",
+        version = "1.0")
 public class CreateSimplePrompt implements Runnable, Buildable {
 
     @Parameters()

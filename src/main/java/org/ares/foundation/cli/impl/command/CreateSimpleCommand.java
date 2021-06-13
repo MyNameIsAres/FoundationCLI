@@ -1,16 +1,21 @@
 package org.ares.foundation.cli.impl.command;
 
 import org.apache.velocity.VelocityContext;
-import org.ares.foundation.cli.Buildable;
-import org.ares.foundation.cli.util.StringUtil;
-import org.ares.foundation.cli.util.TemplateBuilder;
-import org.ares.foundation.cli.util.YamlHandler;
+import org.ares.foundation.cli.util.Buildable;
+import org.ares.foundation.cli.util.string.StringUtil;
+import org.ares.foundation.cli.util.template.TemplateBuilder;
+import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 import java.io.Writer;
 
-@Command(name = "make:command", aliases = "make:cmd")
+@Command(name = "make:command", aliases = "make:cmd",
+        description = "Create a custom SimpleCommand Command. By convention we create a command in the following format:\n" +
+                "<name>Command | BossCommand",
+        mixinStandardHelpOptions = true,
+        customSynopsis = "fo make:command <name> | fo make:cmd <name>",
+        version = "1.0")
 public class CreateSimpleCommand implements Runnable, Buildable {
 
     @Parameters()

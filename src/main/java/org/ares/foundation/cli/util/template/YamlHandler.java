@@ -1,4 +1,4 @@
-package org.ares.foundation.cli.util;
+package org.ares.foundation.cli.util.template;
 
 import org.yaml.snakeyaml.Yaml;
 
@@ -39,16 +39,20 @@ public class YamlHandler {
     }
 
     public String getKeyValue(String key) {
+        try {
+            return fetchInformation().get(key).toString();
 
-        return fetchInformation().get(key).toString();
-    };
-
-    // TODO Uhh, fix this yeh
-    public void verifyKey(String key)  {
-        if (this.getKeyValue(key) == null || this.getKeyValue(key).isEmpty()) {
-
+        } catch (Exception exception) {
+            return "An exception occurred when trying to get the key or value!";
         }
+    }
 
+    public void verifyKey(String key)  {
+        try {
+            getKeyValue(key);
+        } catch (Exception e) {
+            System.out.println("We couldn't verify this key! Please check the stacktrace!");
+        }
     }
 
     public String getTargetLocation(final String projectPath, final String key, final String name) {
@@ -56,8 +60,6 @@ public class YamlHandler {
     }
 
     public String getCommandGroupLocation(final String projectPath, final String key) {
-        System.out.println(projectPath);
-        System.out.println(key);
         return PREFIX + projectPath + key + "/";
     }
 

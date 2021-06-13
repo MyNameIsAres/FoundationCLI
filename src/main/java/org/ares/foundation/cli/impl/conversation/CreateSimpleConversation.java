@@ -1,22 +1,26 @@
 package org.ares.foundation.cli.impl.conversation;
 
 import org.apache.velocity.VelocityContext;
-import org.ares.foundation.cli.Buildable;
-import org.ares.foundation.cli.util.StringUtil;
-import org.ares.foundation.cli.util.TemplateBuilder;
-import org.ares.foundation.cli.util.YamlHandler;
+import org.ares.foundation.cli.util.Buildable;
+import org.ares.foundation.cli.util.string.StringUtil;
+import org.ares.foundation.cli.util.template.TemplateBuilder;
+import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 import java.io.Writer;
 
-@Command(name = "make:conversation", aliases = {"conv"})
+@Command(name = "make:conversation", aliases = "conv",
+        description = "Create a simple conversation. ",
+        mixinStandardHelpOptions = true,
+        customSynopsis = "fo make:conversation <name> | fo make:conv <name>",
+        version = "1.0")
 public class CreateSimpleConversation implements Runnable, Buildable {
 
     @Parameters()
     private String name;
 
-    final static String PROPERTY_KEY = "command_location";
+    final static String PROPERTY_KEY = "conversation_location";
 
     final static String TEMPLATE = "\\conversation\\SimpleConversationTemplate.vm";
 

@@ -1,14 +1,21 @@
 package org.ares.foundation.cli.impl;
 
 import org.apache.velocity.VelocityContext;
-import org.ares.foundation.cli.Buildable;
 import org.ares.foundation.cli.util.*;
+import org.ares.foundation.cli.util.events.EventTemplateHandler;
+import org.ares.foundation.cli.util.string.StringUtil;
+import org.ares.foundation.cli.util.template.TemplateBuilder;
+import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 import java.io.Writer;
 
-@Command(name = "make:listener", aliases = "make:l")
+@Command(name = "make:listener", aliases = "make:l",
+        description = "Create an event listener! There are different event type options available: <wiki> ",
+        mixinStandardHelpOptions = true,
+        customSynopsis = "fo make:listener <name> | fo make:listener <name> <eventType>",
+        version = "1.0")
 public class CreateEventListener implements Runnable, Buildable {
 
     @Parameters()

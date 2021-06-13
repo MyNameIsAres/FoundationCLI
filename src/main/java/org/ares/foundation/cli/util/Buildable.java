@@ -1,4 +1,4 @@
-package org.ares.foundation.cli;
+package org.ares.foundation.cli.util;
 
 import org.apache.velocity.VelocityContext;
 

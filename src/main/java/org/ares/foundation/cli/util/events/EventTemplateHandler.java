@@ -1,4 +1,4 @@
-package org.ares.foundation.cli.util;
+package org.ares.foundation.cli.util.events;
 
 public class EventTemplateHandler {
 

@@ -1,16 +1,20 @@
 package org.ares.foundation.cli.impl.orion;
 
 import org.apache.velocity.VelocityContext;
-import org.ares.foundation.cli.Buildable;
-import org.ares.foundation.cli.util.StringUtil;
-import org.ares.foundation.cli.util.TemplateBuilder;
-import org.ares.foundation.cli.util.YamlHandler;
+import org.ares.foundation.cli.util.Buildable;
+import org.ares.foundation.cli.util.string.StringUtil;
+import org.ares.foundation.cli.util.template.TemplateBuilder;
+import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 import java.io.Writer;
 
-@Command(name = "make:class")
+@Command(name = "make:class",
+        description = "Create a Class (model) from project Orion",
+        mixinStandardHelpOptions = true,
+        customSynopsis = "fo make:command <name> | fo make:cmd <name>",
+        version = "1.0")
 public class CreateClass implements Runnable, Buildable {
 
     @Parameters

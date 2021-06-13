@@ -266,4 +266,7 @@ public class StringUtil {
 
     }
 
+    public static String addDatabaseLabel(String className) {
+        return !className.contains("Database") ? className + "Database" : className;
+    }
 }

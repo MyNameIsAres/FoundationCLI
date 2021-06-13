@@ -250,4 +250,20 @@ public class StringUtil {
     public static String addListenerLabel(String className) {
         return !className.contains("Listener") ? className + "Listener" : className;
     }
+
+    public static String addCacheLabel(String className) {
+        return !className.contains("Cache") ? className + "Cache" : className;
+    }
+
+    public static String getCacheName(String name) {
+        if (!name.contains("Cache")) {
+            return name;
+        }
+
+        return Arrays.toString(name.split("Cache"))
+                .replace("[", "")
+                .replace("]", "");
+
+    }
+
 }

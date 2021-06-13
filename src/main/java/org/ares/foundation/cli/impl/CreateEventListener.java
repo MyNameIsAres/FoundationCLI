@@ -22,7 +22,7 @@ public class CreateEventListener implements Runnable, Buildable {
     private String name = "";
 
     @Parameters(defaultValue = "")
-    private final String eventType = "";
+    private String eventType = "";
 
     final static String PROPERTY_KEY = "listener_location";
 

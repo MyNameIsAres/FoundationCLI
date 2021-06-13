@@ -77,6 +77,7 @@ public class FoundationCLI implements Runnable{
                 .addSubcommand(new CreateBossSkill())
                 .addSubcommand(new CreateNPC())
                 .addSubcommand(new CreatePlayerCache())
+                .addSubcommand(new CreateFlatDatabase())
                 .execute(args);
     }
 }

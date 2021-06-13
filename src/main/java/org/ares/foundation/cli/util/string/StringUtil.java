@@ -1,4 +1,4 @@
-package org.ares.foundation.cli.util;
+package org.ares.foundation.cli.util.string;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;

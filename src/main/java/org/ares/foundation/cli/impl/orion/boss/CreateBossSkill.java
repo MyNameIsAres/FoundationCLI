@@ -1,16 +1,20 @@
 package org.ares.foundation.cli.impl.orion.boss;
 
 import org.apache.velocity.VelocityContext;
-import org.ares.foundation.cli.Buildable;
-import org.ares.foundation.cli.util.StringUtil;
-import org.ares.foundation.cli.util.TemplateBuilder;
-import org.ares.foundation.cli.util.YamlHandler;
+import org.ares.foundation.cli.util.Buildable;
+import org.ares.foundation.cli.util.string.StringUtil;
+import org.ares.foundation.cli.util.template.TemplateBuilder;
+import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 import java.io.Writer;
 
-@Command(name = "make:bossskill", aliases = {"make:bs", "make:boss-skill"})
+@Command(name = "make:bossskill", aliases = {"make:bskill", "make:boss-skill"},
+        description = "Create a custom Boss Skill from project Orion",
+        mixinStandardHelpOptions = true,
+        customSynopsis = "fo make:bossskill <name>, fo make:bskill <name>, fo make:boss-skill <name>",
+        version = "1.0")
 class CreateBossSkill implements Runnable, Buildable {
 
     @Parameters()

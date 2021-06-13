@@ -1,16 +1,20 @@
 package org.ares.foundation.cli.impl.tool;
 
 import org.apache.velocity.VelocityContext;
-import org.ares.foundation.cli.Buildable;
-import org.ares.foundation.cli.util.StringUtil;
-import org.ares.foundation.cli.util.TemplateBuilder;
-import org.ares.foundation.cli.util.YamlHandler;
+import org.ares.foundation.cli.util.Buildable;
+import org.ares.foundation.cli.util.string.StringUtil;
+import org.ares.foundation.cli.util.template.TemplateBuilder;
+import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
 import java.io.Writer;
 
-@Command(name = "make:rocket")
+@Command(name = "make:rocket",
+        description = "Create a Rocket tool",
+        mixinStandardHelpOptions = true,
+        customSynopsis = "fo make:rocket <name>",
+        version = "1.0")
 public class CreateRocket implements Runnable, Buildable {
 
     @CommandLine.Parameters()

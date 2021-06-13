@@ -1,16 +1,20 @@
 package org.ares.foundation.cli.impl.menu;
 
 import org.apache.velocity.VelocityContext;
-import org.ares.foundation.cli.Buildable;
-import org.ares.foundation.cli.util.StringUtil;
-import org.ares.foundation.cli.util.TemplateBuilder;
-import org.ares.foundation.cli.util.YamlHandler;
+import org.ares.foundation.cli.util.Buildable;
+import org.ares.foundation.cli.util.string.StringUtil;
+import org.ares.foundation.cli.util.template.TemplateBuilder;
+import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 import java.io.Writer;
 
-@Command(name = "make:menutools", aliases = "make:menut")
+@Command(name = "make:menutools", aliases = "make:menut",
+        description = "Create a tools menu",
+        mixinStandardHelpOptions = true,
+        customSynopsis = "fo make:menutools <name> | fo make:menut <name>",
+        version = "1.0")
 public class CreateMenuTools implements Runnable, Buildable {
 
     @Parameters()

@@ -1,16 +1,20 @@
 package org.ares.foundation.cli.impl.orion.boss;
 
 import org.apache.velocity.VelocityContext;
-import org.ares.foundation.cli.Buildable;
-import org.ares.foundation.cli.util.StringUtil;
-import org.ares.foundation.cli.util.TemplateBuilder;
-import org.ares.foundation.cli.util.YamlHandler;
+import org.ares.foundation.cli.util.Buildable;
+import org.ares.foundation.cli.util.string.StringUtil;
+import org.ares.foundation.cli.util.template.TemplateBuilder;
+import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 import java.io.Writer;
 
-@Command(name = "make:npc")
+@Command(name = "make:npc",
+        description = "Create a NPC from Project Orion",
+        mixinStandardHelpOptions = true,
+        customSynopsis = "fo make:npc <name>",
+        version = "1.0")
 public class CreateNPC implements Runnable, Buildable {
 
     @Parameters()

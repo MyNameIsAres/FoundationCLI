@@ -41,9 +41,8 @@ public class YamlHandler {
     public String getKeyValue(String key) {
         try {
             return fetchInformation().get(key).toString();
-
         } catch (Exception exception) {
-            return "An exception occurred when trying to get the key or value!";
+            return "";
         }
     }
 
@@ -65,7 +64,14 @@ public class YamlHandler {
 
 
     public String getPackageName(String key) {
-        String packageName = this.getProjectPath() + this.getKeyValue(key);
+
+        String packageName;
+        if (this.getKeyValue(key).equals("")) {
+            packageName = this.getProjectPath();
+
+        } else {
+            packageName = this.getProjectPath() + this.getKeyValue(key);
+        }
         packageName = packageName.replace("/", ".");
 
         return packageName;

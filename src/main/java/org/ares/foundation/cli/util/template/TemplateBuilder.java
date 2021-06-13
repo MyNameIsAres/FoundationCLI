@@ -14,6 +14,8 @@ public class TemplateBuilder {
 
     public Writer createFileWriter(String propertyKey, String name) {
         try {
+            System.out.println("We try diz");
+            System.out.println(yamlHandler.getTargetLocation(yamlHandler.getProjectPath(), yamlHandler.getKeyValue(propertyKey), name) + ".java");
             return new FileWriter(yamlHandler.getTargetLocation(yamlHandler.getProjectPath(), yamlHandler.getKeyValue(propertyKey), name) + ".java");
         } catch (IOException ioException) {
             System.out.println(ioException.getMessage());

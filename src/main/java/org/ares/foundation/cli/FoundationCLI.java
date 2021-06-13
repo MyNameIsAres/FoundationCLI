@@ -1,9 +1,6 @@
 package org.ares.foundation.cli;
 
-import org.ares.foundation.cli.impl.CreateEventListener;
-import org.ares.foundation.cli.impl.CreateRunnable;
-import org.ares.foundation.cli.impl.CreateSettings;
-import org.ares.foundation.cli.impl.CreateSimpleEnchantment;
+import org.ares.foundation.cli.impl.*;
 import org.ares.foundation.cli.impl.command.CreateCommandGroup;
 import org.ares.foundation.cli.impl.command.CreateSimpleCommand;
 import org.ares.foundation.cli.impl.command.CreateSubCommand;
@@ -79,6 +76,7 @@ public class FoundationCLI implements Runnable{
                 .addSubcommand(new CreateBoss())
                 .addSubcommand(new CreateBossSkill())
                 .addSubcommand(new CreateNPC())
+                .addSubcommand(new CreatePlayerCache())
                 .execute(args);
     }
 }

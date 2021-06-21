@@ -23,7 +23,7 @@ public class CreateCommandGroup implements Runnable, Buildable {
     private String name;
 
     @Parameters(defaultValue = "")
-    private String subPackageName = "";
+    private String subPackageName;
 
     final static String PROPERTY_KEY = "command_location";
 
@@ -42,15 +42,18 @@ public class CreateCommandGroup implements Runnable, Buildable {
     public void run() {
         final String packageName =  PackageHandler.createPackage(name, subPackageName, PROPERTY_KEY);
 
-        System.out.println("PackageName: " + packageName);
 
-        TemplateBuilder templateBuilder = new TemplateBuilder();
         VelocityContext context = buildContext();
         context.put("PACKAGE_NAME", new YamlHandler().getGroupPackageName(PROPERTY_KEY, packageName));
 
-        Writer writer = templateBuilder.createFileWriterGroup(PROPERTY_KEY, packageName, StringUtil.addCommandGroupLabel(name));
-        templateBuilder.createTemplate(writer, TEMPLATE, context);
-        templateBuilder.flushFileWriter(writer);
+        TemplateBuilder templateBuilder = new TemplateBuilder(PROPERTY_KEY, StringUtil.addCommandGroupLabel(name), TEMPLATE, context);
+        templateBuilder.setPackageName(packageName);
+        templateBuilder.buildCommandGroup();
+
+
+//        Writer writer = templateBuilder.createFileWriterGroup(PROPERTY_KEY, packageName, StringUtil.addCommandGroupLabel(name));
+//        templateBuilder.createTemplate(writer, TEMPLATE, context);
+//        templateBuilder.flushFileWriter(writer);
     }
 
 }

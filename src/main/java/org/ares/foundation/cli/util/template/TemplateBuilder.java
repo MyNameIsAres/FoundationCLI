@@ -10,7 +10,45 @@ import java.io.Writer;
 
 public class TemplateBuilder {
 
-    YamlHandler yamlHandler = new YamlHandler();
+    private String propertyKey;
+    private String name;
+    private String template;
+    private VelocityContext context;
+    private String packageName;
+
+    private final YamlHandler yamlHandler = new YamlHandler();
+
+
+    public TemplateBuilder() {
+
+    }
+
+    public TemplateBuilder(String propertyKey, String name, String template, VelocityContext context) {
+        this.propertyKey = propertyKey;
+        this.name = name;
+        this.template = template;
+        this.context = context;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
+
+    public void buildCommand() {
+        final Writer writer = this.createFileWriter(propertyKey, name);
+        this.createTemplate(writer, template, context);
+        this.flushFileWriter(writer);
+    }
+
+    public void buildCommandGroup() {
+        final Writer writer = this.createFileWriterGroup(propertyKey, getPackageName(), name);
+        this.createTemplate(writer, template, context);
+        this.flushFileWriter(writer);
+    }
 
     public Writer createFileWriter(String propertyKey, String name) {
         try {

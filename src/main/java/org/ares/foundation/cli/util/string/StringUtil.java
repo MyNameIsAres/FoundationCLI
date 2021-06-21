@@ -25,7 +25,7 @@ public class StringUtil {
 
 
     public static String addCommandLabel(String className) {
-        return !className.contains("Command") ? className + "Command" : className;
+        return !className.contains("Command") ? StringUtils.capitalize(className) + "Command" : StringUtils.capitalize(className);
     }
 
     public static String getCommandGroupName(String name) {

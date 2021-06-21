@@ -2,6 +2,8 @@ package org.ares.foundation.cli.util.template;
 
 import org.ares.foundation.cli.util.string.StringUtil;
 
+import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -26,7 +28,7 @@ public class PackageHandler {
         try {
             Files.createDirectory(Paths.get(yamlHandler.getCommandGroupLocation(yamlHandler.getProjectPath(), yamlHandler.getKeyValue(propertyKey))
                     + packageName));
-        } catch (Exception exception) {
+        } catch (IOException exception) {
             System.out.println("An error occurred while creating a directory! Please check the stack trace:");
             exception.printStackTrace();
         }
@@ -39,9 +41,12 @@ public class PackageHandler {
         try {
             Files.createDirectory(Paths.get(yamlHandler.getCommandGroupLocation(yamlHandler.getProjectPath(), yamlHandler.getKeyValue(propertyKey))
                     + subPackageName));
-        } catch (Exception exception) {
+        } catch (IOException exception) {
             System.out.println("An error occurred while creating a directory! Please check the stack trace:");
             exception.printStackTrace();
+
+            System.out.println();
+            System.out.println("The folder probably already exists.");
         }
 
     }

@@ -64,8 +64,8 @@ public class YamlHandler {
 
 
     public String getPackageName(String key) {
-
         String packageName;
+
         if (this.getKeyValue(key).equals("")) {
             packageName = this.getProjectPath();
 

@@ -19,10 +19,10 @@ import java.io.Writer;
 public class CreateEventListener implements Runnable, Buildable {
 
     @Parameters()
-    private String name = "";
+    private String name;
 
     @Parameters(defaultValue = "")
-    private String eventType = "";
+    private String eventType;
 
     final static String PROPERTY_KEY = "listener_location";
 

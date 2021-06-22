@@ -8,8 +8,6 @@ import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-import java.io.Writer;
-
 @Command(name = "make:command", aliases = "make:cmd",
         description = "Create a custom SimpleCommand Command. By convention we create a command in the following format:\n" +
                 "<name>Command | BossCommand",

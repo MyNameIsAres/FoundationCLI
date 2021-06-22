@@ -77,6 +77,12 @@ public class YamlHandler {
         return packageName;
     }
 
+    // Only intended as a utility method to find a package. Not as a replacement
+    // for the method below.
+    public String getRawGroupPackageName(String key, String packageName) {
+        return this.getProjectPath() + this.getKeyValue(key) + packageName;
+    }
+
     public String getGroupPackageName(String key, String packageName) {
         String newPackageName = this.getProjectPath() + this.getKeyValue(key) + "." +packageName;
         newPackageName = newPackageName.replace("/", ".");

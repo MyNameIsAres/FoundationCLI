@@ -8,7 +8,6 @@ import org.ares.foundation.cli.util.template.TemplateBuilder;
 import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
-import java.io.Writer;
 
 @Command(name = "make:commandgroup", aliases = "make:cmdgroup",
         description = "Create a command group. There are two methods to create one.\n " +
@@ -42,18 +41,13 @@ public class CreateCommandGroup implements Runnable, Buildable {
     public void run() {
         final String packageName =  PackageHandler.createPackage(name, subPackageName, PROPERTY_KEY);
 
-
         VelocityContext context = buildContext();
         context.put("PACKAGE_NAME", new YamlHandler().getGroupPackageName(PROPERTY_KEY, packageName));
 
+
         TemplateBuilder templateBuilder = new TemplateBuilder(PROPERTY_KEY, StringUtil.addCommandGroupLabel(name), TEMPLATE, context);
-        templateBuilder.setPackageName(packageName);
+        templateBuilder.setSubPackageName(packageName);
         templateBuilder.buildCommandGroup();
-
-
-//        Writer writer = templateBuilder.createFileWriterGroup(PROPERTY_KEY, packageName, StringUtil.addCommandGroupLabel(name));
-//        templateBuilder.createTemplate(writer, TEMPLATE, context);
-//        templateBuilder.flushFileWriter(writer);
     }
 
 }

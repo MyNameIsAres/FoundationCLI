@@ -8,8 +8,6 @@ import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-import java.io.Writer;
-
 @Command(name = "make:rank",
         description = "Create a Rank class from project Orion",
         mixinStandardHelpOptions = true,
@@ -38,9 +36,6 @@ public class CreateRank implements Runnable, Buildable {
 
     @Override
     public void run() {
-        TemplateBuilder templateBuilder = new TemplateBuilder();
-        Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, name);
-        templateBuilder.createTemplate(writer, TEMPLATE, buildContext());
-        templateBuilder.flushFileWriter(writer);
+        new TemplateBuilder(PROPERTY_KEY, name, TEMPLATE, buildContext()).buildCommand();
     }
 }

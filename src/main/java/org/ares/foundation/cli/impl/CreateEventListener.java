@@ -9,8 +9,6 @@ import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-import java.io.Writer;
-
 @Command(name = "make:listener", aliases = "make:l",
         description = "Create an event listener! There are different event type options available: <wiki> ",
         mixinStandardHelpOptions = true,
@@ -43,13 +41,10 @@ public class CreateEventListener implements Runnable, Buildable {
 
     @Override
     public void run() {
-        TemplateBuilder templateBuilder = new TemplateBuilder();
-        Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, StringUtil.addListenerLabel(name));
-        templateBuilder.createTemplate(writer, template + getEventType(eventType), buildContext());
-        templateBuilder.flushFileWriter(writer);
+         new TemplateBuilder(PROPERTY_KEY, name, template + getEventType(eventType), buildContext()).buildCommand();
     }
 
-    public String getEventType(String eventType) {
+    private String getEventType(String eventType) {
         return new EventTemplateHandler().fetchTemplate(eventType);
     }
 

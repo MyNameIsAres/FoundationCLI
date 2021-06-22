@@ -20,9 +20,7 @@ public class StringUtil {
         return Arrays.toString(name.split("Command"))
                 .replace("[", "")
                 .replace("]", "");
-
     }
-
 
     public static String addCommandLabel(String className) {
         return !className.contains("Command") ? StringUtils.capitalize(className) + "Command" : StringUtils.capitalize(className);
@@ -39,7 +37,7 @@ public class StringUtil {
     }
 
     public static String addCommandGroupLabel(String className) {
-        return !className.contains("CommandGroup") ? className + "CommandGroup" : className;
+        return !className.contains("CommandGroup") ?  StringUtils.capitalize(className) + "CommandGroup" :  StringUtils.capitalize(className);
     }
 
 

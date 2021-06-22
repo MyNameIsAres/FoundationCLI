@@ -8,8 +8,6 @@ import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-import java.io.Writer;
-
 @Command(name = "make:prompt",
         description = "Create a simple prompt",
         mixinStandardHelpOptions = true,
@@ -37,9 +35,6 @@ public class CreateSimplePrompt implements Runnable, Buildable {
 
     @Override
     public void run() {
-        TemplateBuilder templateBuilder = new TemplateBuilder();
-        Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, name);
-        templateBuilder.createTemplate(writer, TEMPLATE, buildContext());
-        templateBuilder.flushFileWriter(writer);
+        new TemplateBuilder(PROPERTY_KEY, name, TEMPLATE, buildContext()).buildCommand();
     }
 }

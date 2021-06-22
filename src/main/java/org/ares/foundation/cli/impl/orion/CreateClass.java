@@ -8,8 +8,6 @@ import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-import java.io.Writer;
-
 @Command(name = "make:class",
         description = "Create a Class (model) from project Orion",
         mixinStandardHelpOptions = true,
@@ -39,10 +37,7 @@ public class CreateClass implements Runnable, Buildable {
 
     @Override
     public void run() {
-        TemplateBuilder templateBuilder = new TemplateBuilder();
-        Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, name);
-        templateBuilder.createTemplate(writer, TEMPLATE, buildContext());
-        templateBuilder.flushFileWriter(writer);
+        new TemplateBuilder(PROPERTY_KEY, name, TEMPLATE, buildContext()).buildCommand();
     }
 
 }

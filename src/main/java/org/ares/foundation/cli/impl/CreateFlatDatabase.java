@@ -8,8 +8,6 @@ import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-import java.io.Writer;
-
 @Command(name = "make:flatdatabase", aliases = "make:flatdb",
         description = "Create a SimpleFlatDatabase with a given type. If the type is invalid, we insert a generic 'T' parameter.",
         mixinStandardHelpOptions = true,
@@ -42,9 +40,6 @@ public class CreateFlatDatabase implements Runnable, Buildable {
 
     @Override
     public void run() {
-        TemplateBuilder templateBuilder = new TemplateBuilder();
-        Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, StringUtil.addDatabaseLabel(name));
-        templateBuilder.createTemplate(writer, TEMPLATE, buildContext());
-        templateBuilder.flushFileWriter(writer);
+        new TemplateBuilder(PROPERTY_KEY, name, TEMPLATE, buildContext()).buildCommand();
     }
 }

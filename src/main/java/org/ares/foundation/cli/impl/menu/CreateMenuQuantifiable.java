@@ -37,10 +37,7 @@ public class CreateMenuQuantifiable implements Runnable, Buildable {
 
     @Override
     public void run() {
-        TemplateBuilder templateBuilder = new TemplateBuilder();
-        Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, name);
-        templateBuilder.createTemplate(writer, TEMPLATE, buildContext());
-        templateBuilder.flushFileWriter(writer);
+        new TemplateBuilder(PROPERTY_KEY, name, TEMPLATE, buildContext()).buildCommand();
     }
 }
 

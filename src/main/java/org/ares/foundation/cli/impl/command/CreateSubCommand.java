@@ -4,12 +4,8 @@ import org.apache.velocity.VelocityContext;
 import org.ares.foundation.cli.util.Buildable;
 import org.ares.foundation.cli.util.string.StringUtil;
 import org.ares.foundation.cli.util.template.TemplateBuilder;
-import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 @Command(name = "make:subcommand", aliases = "make:subcmd",
         description = "Create a sub-command for a command group. When you don't fill in a valid package name or a missing package\n" +
@@ -43,26 +39,8 @@ public class CreateSubCommand implements Runnable, Buildable {
 
     @Override
     public void run() {
-        TemplateBuilder templateBuilder = new TemplateBuilder();
-        VelocityContext context = buildContext();
-
-        toBeRenamed();
-
-        context.put("PACKAGE_NAME", new YamlHandler().getGroupPackageName(PROPERTY_KEY, subPackageName));
-
-        Writer writer = templateBuilder.createFileWriter(PROPERTY_KEY, StringUtil.addCommandLabel(name));
-        templateBuilder.createTemplate(writer, TEMPLATE, context);
-        templateBuilder.flushFileWriter(writer);
-    }
-
-    private void toBeRenamed() {
-
-
-        if (subPackageName.equals("")) {
-            System.out.println("false!");
-        }
-
-        System.out.println(Files.exists(Paths.get(new YamlHandler().getGroupPackageName(PROPERTY_KEY, subPackageName))));
-
+        TemplateBuilder templateBuilder = new TemplateBuilder(PROPERTY_KEY, StringUtil.addCommandLabel(name), TEMPLATE, buildContext());
+        templateBuilder.setSubPackageName(subPackageName);
+        templateBuilder.buildSubCommandGroup();
     }
 }

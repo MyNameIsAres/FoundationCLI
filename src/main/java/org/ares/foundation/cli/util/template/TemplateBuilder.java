@@ -40,9 +40,10 @@ public class TemplateBuilder {
         this.flushFileWriter(writer);
     }
 
+    // TODO Consider to clean this code up
     public void buildSubCommandGroup() {
         Writer writer;
-        if (subPackageExists(propertyKey, getSubPackageName())) {
+        if (!subPackageExists(propertyKey, getSubPackageName())) {
             writer = this.createFileWriter(propertyKey, name);
             context.put("PACKAGE_NAME", yamlHandler.getPackageName(propertyKey));
         } else {
@@ -107,8 +108,19 @@ public class TemplateBuilder {
     }
 
     private boolean subPackageExists(String propertyKey, String subPackageName) {
+
+        System.out.println("PropK: " + propertyKey);
+        System.out.println("PK: " + subPackageName);
+        System.out.println(Files.exists(Paths.get("src/main/java/" + new YamlHandler().getRawGroupPackageName(propertyKey, subPackageName))));
         final boolean PATH_TO_SEARCH = Files.exists(Paths.get("src/main/java/" + new YamlHandler().getRawGroupPackageName(propertyKey, subPackageName)));
 
-        return !subPackageName.equals("") || PATH_TO_SEARCH;
+        if (!subPackageName.equals("") || !PATH_TO_SEARCH) {
+
+        }
+
+        System.out.println(subPackageName.equals("") + " sub");
+        System.out.println(PATH_TO_SEARCH + " path");
+
+        return subPackageName.equals("") || !PATH_TO_SEARCH;
     }
 }

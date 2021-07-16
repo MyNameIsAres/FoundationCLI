@@ -33,7 +33,7 @@ public class FoundationCLI implements Runnable{
 
     @Override
     public void run() {
-        this.welcomeMessage();
+        welcomeMessage();
     }
 
     private void welcomeMessage() {

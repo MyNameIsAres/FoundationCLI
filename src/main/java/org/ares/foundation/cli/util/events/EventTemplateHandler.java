@@ -15,7 +15,7 @@ public class EventTemplateHandler {
                 return getPlayerQuitTemplate();
             case "chat":
                 return getPlayerChatTemplate();
-            case "interact":
+            case "pinteract":
                 return getPlayerInteractTemplate();
             case "interacte":
                 return getPlayerInteractEntityTemplate();

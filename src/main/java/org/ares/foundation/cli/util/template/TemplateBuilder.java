@@ -27,7 +27,7 @@ public class TemplateBuilder {
     }
 
     public String getSubPackageName() {
-        return subPackageName;
+        return subPackageName.toLowerCase();
     }
 
     public void setSubPackageName(String packageName) {
@@ -75,7 +75,7 @@ public class TemplateBuilder {
         try {
             return new FileWriter(yamlHandler.getTargetLocation(yamlHandler.getProjectPath(), yamlHandler.getKeyValue(propertyKey) + "/" + commandGroupPath , name) + ".java");
         } catch (IOException | NullPointerException exception) {
-            System.out.println(exception.getMessage());
+            System.out.println("A NullPointerException occurred!");
         }
 
         System.out.println("We gonna return null!");
@@ -109,7 +109,6 @@ public class TemplateBuilder {
 
     private boolean subPackageExists(String propertyKey, String subPackageName) {
         final boolean PATH_TO_SEARCH = Files.exists(Paths.get("src/main/java/" + new YamlHandler().getRawGroupPackageName(propertyKey, subPackageName)));
-
-        return subPackageName.equals("") || !PATH_TO_SEARCH;
+        return subPackageName.equals("") || PATH_TO_SEARCH;
     }
 }

@@ -8,8 +8,6 @@ import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-import java.io.Writer;
-
 @Command(name = "make:menuquantifiable", aliases = "make:menuq",
         description = "Create a quantifiable menu",
         mixinStandardHelpOptions = true,

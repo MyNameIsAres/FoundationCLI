@@ -39,7 +39,11 @@ public class CreateCommandGroup implements Runnable, Buildable {
 
     @Override
     public void run() {
-        final String packageName =  PackageHandler.createPackage(name, subPackageName, PROPERTY_KEY);
+        final String packageName = PackageHandler.createPackage(name, subPackageName.toLowerCase(), PROPERTY_KEY);
+
+        System.out.println("P name: " + packageName);
+
+        System.out.println("HALLOOOHHHHHH");
 
         VelocityContext context = buildContext();
         context.put("PACKAGE_NAME", new YamlHandler().getGroupPackageName(PROPERTY_KEY, packageName));

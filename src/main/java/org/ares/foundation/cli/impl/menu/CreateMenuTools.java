@@ -8,8 +8,6 @@ import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-import java.io.Writer;
-
 @Command(name = "make:menutools", aliases = "make:menut",
         description = "Create a tools menu",
         mixinStandardHelpOptions = true,

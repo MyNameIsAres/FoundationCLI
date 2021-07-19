@@ -8,7 +8,7 @@ import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-@Command(name = "make:bossskill", aliases = {"make:bskill", "make:boss-skill"},
+@Command(name = "make:bossskill", aliases = "make:bskill",
         description = "Create a custom Boss Skill from project Orion",
         mixinStandardHelpOptions = true,
         customSynopsis = "fo make:bossskill <name>, fo make:bskill <name>, fo make:boss-skill <name>",

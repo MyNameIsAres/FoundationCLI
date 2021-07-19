@@ -9,8 +9,6 @@ import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-import java.io.Writer;
-
 @Command(name = "make:menu",
         description = "Create a custom menu",
         mixinStandardHelpOptions = true,

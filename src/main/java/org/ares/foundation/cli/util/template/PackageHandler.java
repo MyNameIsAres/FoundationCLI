@@ -24,7 +24,6 @@ public class PackageHandler {
 
     private static void createDirectoryWithPrefix(String propertyKey, String packageName) {
         YamlHandler yamlHandler = new YamlHandler();
-
         try {
             Files.createDirectory(Paths.get(yamlHandler.getCommandGroupLocation(yamlHandler.getProjectPath(), yamlHandler.getKeyValue(propertyKey))
                     + packageName));

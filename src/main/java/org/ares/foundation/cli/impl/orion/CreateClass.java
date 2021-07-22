@@ -18,7 +18,7 @@ public class CreateClass implements Runnable, Buildable {
     @Parameters
     private String name;
 
-    final static String PROPERTY_KEY = "class_location";
+    final static String PROPERTY_KEY = "player_class_location";
 
     final static String TEMPLATE = "\\Orion\\ClassTemplate.vm";
 
@@ -37,7 +37,7 @@ public class CreateClass implements Runnable, Buildable {
 
     @Override
     public void run() {
-        new TemplateBuilder(PROPERTY_KEY, name, TEMPLATE, buildContext()).buildCommand();
+        new TemplateBuilder(PROPERTY_KEY, StringUtil.addClassLabel(name), TEMPLATE, buildContext()).buildCommand();
     }
 
 }

@@ -18,7 +18,7 @@ public class CreateRank implements Runnable, Buildable {
     @Parameters()
     private String name;
 
-    final static String PROPERTY_KEY = "rank_location";
+    final static String PROPERTY_KEY = "rank_model_location";
 
     final static String TEMPLATE = "\\Orion\\RankTemplate.vm";
 
@@ -30,12 +30,13 @@ public class CreateRank implements Runnable, Buildable {
 
         context.put("PACKAGE_NAME", PACKAGE_NAME);
         context.put("CLASS_NAME", StringUtil.addRankLabel(name));
-        context.put("NAME", StringUtil.getRankName(name));
+        context.put("NAME", StringUtil.addRankLabel(name));
+
         return context;
     }
 
     @Override
     public void run() {
-        new TemplateBuilder(PROPERTY_KEY, name, TEMPLATE, buildContext()).buildCommand();
+        new TemplateBuilder(PROPERTY_KEY, StringUtil.addRankLabel(name), TEMPLATE, buildContext()).buildCommand();
     }
 }

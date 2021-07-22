@@ -37,6 +37,6 @@ public class CreateQuest implements Runnable, Buildable {
 
     @Override
     public void run() {
-        new TemplateBuilder(PROPERTY_KEY, name, TEMPLATE, buildContext()).buildCommand();
+        new TemplateBuilder(PROPERTY_KEY, StringUtil.addQuestLabel(name), TEMPLATE, buildContext()).buildCommand();
     }
 }

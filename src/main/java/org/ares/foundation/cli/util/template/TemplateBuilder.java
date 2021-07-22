@@ -77,9 +77,6 @@ public class TemplateBuilder {
         } catch (IOException | NullPointerException exception) {
             System.out.println("A NullPointerException occurred!");
         }
-
-        System.out.println("We gonna return null!");
-
         return null;
     }
 
@@ -95,14 +92,9 @@ public class TemplateBuilder {
     private void createTemplate(Writer writer, String template, VelocityContext context) {
         VelocityEngine engine = new VelocityBuilder().createVelocityEngineFoundation();
         Template templateName = engine.getTemplate(template);
-
-        System.out.println("Writer: " + writer.toString());
-
         try {
             engine.mergeTemplate(templateName.getName(), "UTF-8", context, writer);
         } catch(NullPointerException exception) {
-            exception.printStackTrace();
-
             System.out.println("We can't find this directory!");
         }
     }

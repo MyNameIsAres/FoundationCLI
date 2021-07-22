@@ -81,7 +81,7 @@ public class StringUtil {
     }
 
     public static String addBossSkillLabel(String className) {
-        return !className.contains("Skill") ? className + "Skill" : className;
+        return !className.contains("Skill") ? "BossSkill" + className : className;
     }
 
     public static String getRankName(String name) {
@@ -95,7 +95,7 @@ public class StringUtil {
     }
 
     public static String addRankLabel(String className) {
-        return !className.contains("Rank") ? className + "Rank" : className;
+        return !className.contains("Rank") ? "Rank" + className : className;
     }
 
     public static String getQuestName(String name) {

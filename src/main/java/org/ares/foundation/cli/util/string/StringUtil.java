@@ -53,7 +53,7 @@ public class StringUtil {
 
     public static String addBossLabel(String className) {
         checkCapital(className);
-        return !className.contains("Boss") ? className + "Boss" : className;
+        return !className.contains("Boss") ? "Boss" +  className : className;
     }
 
     public static String getNPCName(String name) {
@@ -67,7 +67,7 @@ public class StringUtil {
     }
 
     public static String addNpcLabel(String className) {
-        return !className.contains("NPC") ? className + "NPC" : className;
+        return !className.contains("NPC") ? "NPC" + className  : className;
     }
 
     public static String getBossSkill(String name) {
@@ -109,7 +109,7 @@ public class StringUtil {
     }
 
     public static String addQuestLabel(String className) {
-        return !className.contains("Quest") ? className + "Quest" : className;
+        return !className.contains("Quest") ? "Quest" + className : className;
     }
 
     public static String getClassName(String name) {
@@ -123,7 +123,7 @@ public class StringUtil {
     }
 
     public static String addClassLabel(String className) {
-        return !className.contains("Class") ? className + "Class" : className;
+        return !className.contains("Class") ? "Class" + className : className;
     }
 
     public static String getBlockToolName(String name) {
@@ -137,7 +137,7 @@ public class StringUtil {
     }
 
     public static String addBlockToolLabel(String className) {
-        return !className.contains("BlockTool") ? className + "BlockTool" : className;
+        return !className.contains("BlockTool") ? className + "BlockTool": className;
     }
 
     public static String getRocketName(String name) {
@@ -165,7 +165,7 @@ public class StringUtil {
     }
 
     public static String addToolLabel(String className) {
-        return !className.contains("Tool") ? className + "Tool" : className;
+        return !className.contains("Tool") ? "Tool" + className : className;
     }
 
     public static String getPromptName(String name) {

@@ -17,7 +17,7 @@ public class YamlHandler {
         Map<String, Object> data;
         try {
             inputStream = new FileInputStream(
-                    "op-config.yml"
+                    "foundation.yml"
             );
 
             Yaml yaml = new Yaml();

@@ -35,7 +35,7 @@ public class YamlHandler {
     public String getProjectPath() {
         verifyKey("project-path");
 
-        return fetchInformation().get("project-path").toString();
+        return fetchInformation().get("project_path").toString();
     }
 
     public String getKeyValue(String key) {

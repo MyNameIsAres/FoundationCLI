@@ -8,8 +8,6 @@ import org.ares.foundation.cli.util.template.YamlHandler;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-import java.io.Writer;
-
 @Command(name = "make:menupagged", aliases = "make:menup",
         description = "Create a paged menu",
         mixinStandardHelpOptions = true,
@@ -31,8 +29,8 @@ public class CreateMenuPagged implements Runnable, Buildable {
 
         context.put("PACKAGE_NAME", PACKAGE_NAME);
         context.put("CLASS_NAME", StringUtil.addCommandLabel(name));
-        context.put("TYPE", "Missing Class");
-        context.put("TYPE_VARIABLE", "Missing variable");
+        context.put("TYPE", "T");
+        context.put("TYPE_VARIABLE", "t");
 
         return context;
     }

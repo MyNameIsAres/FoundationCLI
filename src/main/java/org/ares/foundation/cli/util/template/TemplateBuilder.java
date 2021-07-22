@@ -27,7 +27,7 @@ public class TemplateBuilder {
     }
 
     public String getSubPackageName() {
-        return subPackageName;
+        return subPackageName.toLowerCase();
     }
 
     public void setSubPackageName(String packageName) {
@@ -75,11 +75,8 @@ public class TemplateBuilder {
         try {
             return new FileWriter(yamlHandler.getTargetLocation(yamlHandler.getProjectPath(), yamlHandler.getKeyValue(propertyKey) + "/" + commandGroupPath , name) + ".java");
         } catch (IOException | NullPointerException exception) {
-            System.out.println(exception.getMessage());
+            System.out.println("A NullPointerException occurred!");
         }
-
-        System.out.println("We gonna return null!");
-
         return null;
     }
 
@@ -95,21 +92,15 @@ public class TemplateBuilder {
     private void createTemplate(Writer writer, String template, VelocityContext context) {
         VelocityEngine engine = new VelocityBuilder().createVelocityEngineFoundation();
         Template templateName = engine.getTemplate(template);
-
-        System.out.println("Writer: " + writer.toString());
-
         try {
             engine.mergeTemplate(templateName.getName(), "UTF-8", context, writer);
         } catch(NullPointerException exception) {
-            exception.printStackTrace();
-
             System.out.println("We can't find this directory!");
         }
     }
 
     private boolean subPackageExists(String propertyKey, String subPackageName) {
         final boolean PATH_TO_SEARCH = Files.exists(Paths.get("src/main/java/" + new YamlHandler().getRawGroupPackageName(propertyKey, subPackageName)));
-
-        return subPackageName.equals("") || !PATH_TO_SEARCH;
+        return subPackageName.equals("") || PATH_TO_SEARCH;
     }
 }

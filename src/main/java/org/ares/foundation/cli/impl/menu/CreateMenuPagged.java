@@ -2,6 +2,7 @@ package org.ares.foundation.cli.impl.menu;
 
 import org.apache.velocity.VelocityContext;
 import org.ares.foundation.cli.util.Buildable;
+import org.ares.foundation.cli.util.Confirmable;
 import org.ares.foundation.cli.util.string.StringUtil;
 import org.ares.foundation.cli.util.template.TemplateBuilder;
 import org.ares.foundation.cli.util.template.YamlHandler;
@@ -13,7 +14,7 @@ import picocli.CommandLine.Parameters;
         mixinStandardHelpOptions = true,
         customSynopsis = "fo make:menupagged <name> | fo make:menup <name>",
         version = "1.0")
-public class CreateMenuPagged implements Runnable, Buildable {
+public class CreateMenuPagged implements Runnable, Buildable, Confirmable {
 
     @Parameters()
     private String name;
@@ -36,8 +37,15 @@ public class CreateMenuPagged implements Runnable, Buildable {
     }
 
     @Override
+    public void confirmSuccessMessage() {
+        System.out.println("Successfully created a new MenuPagged class!");
+    }
+
+    @Override
     public void run() {
-        new TemplateBuilder(PROPERTY_KEY, name, TEMPLATE, buildContext()).buildCommand();
+        new TemplateBuilder(PROPERTY_KEY, StringUtil.addMenuLabel(name), TEMPLATE, buildContext()).buildCommand();
+
+        confirmSuccessMessage();
     }
 }
 

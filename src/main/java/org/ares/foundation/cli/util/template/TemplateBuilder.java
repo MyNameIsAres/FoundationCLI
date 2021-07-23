@@ -40,7 +40,7 @@ public class TemplateBuilder {
         this.flushFileWriter(writer);
     }
 
-    // TODO Consider to clean this code up
+    //TODO Consider to clean this code up
     public void buildSubCommandGroup() {
         Writer writer;
         if (!subPackageExists(propertyKey, getSubPackageName())) {
@@ -62,7 +62,6 @@ public class TemplateBuilder {
 
     private Writer createFileWriter(String propertyKey, String name) {
         try {
-            System.out.println(yamlHandler.getTargetLocation(yamlHandler.getProjectPath(), yamlHandler.getKeyValue(propertyKey), name) + ".java");
             return new FileWriter(yamlHandler.getTargetLocation(yamlHandler.getProjectPath(), yamlHandler.getKeyValue(propertyKey), name) + ".java");
         } catch (IOException ioException) {
             System.out.println(ioException.getMessage());
@@ -85,7 +84,7 @@ public class TemplateBuilder {
             writer.flush();
             writer.close();
         } catch (IOException | NullPointerException exception) {
-           System.out.println("We couldn't flush this due to an exception!");
+           System.out.println("An exception occurred when flushing this file!");
         }
     }
 

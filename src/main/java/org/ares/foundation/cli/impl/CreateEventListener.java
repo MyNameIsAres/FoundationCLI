@@ -14,7 +14,7 @@ import picocli.CommandLine.Parameters;
         mixinStandardHelpOptions = true,
         customSynopsis = "fo make:listener <name> | fo make:listener <name> <eventType>",
         version = "1.0")
-public class CreateEventListener implements Runnable, Buildable {
+public class CreateEventListener implements Runnable, Buildable, Confirmable {
 
     @Parameters()
     private String name;
@@ -40,12 +40,20 @@ public class CreateEventListener implements Runnable, Buildable {
     }
 
     @Override
-    public void run() {
-         new TemplateBuilder(PROPERTY_KEY, name, template + getEventType(eventType), buildContext()).buildCommand();
+    public void confirmSuccessMessage() {
+        System.out.println("Successfully created a new Event Listener class!");
     }
 
     private String getEventType(String eventType) {
         return new EventTemplateHandler().fetchTemplate(eventType);
     }
+
+    @Override
+    public void run() {
+         new TemplateBuilder(PROPERTY_KEY, StringUtil.addListenerLabel(name), template + getEventType(eventType), buildContext()).buildCommand();
+
+         confirmSuccessMessage();
+    }
+
 
 }

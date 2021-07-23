@@ -2,6 +2,7 @@ package org.ares.foundation.cli.impl.command;
 
 import org.apache.velocity.VelocityContext;
 import org.ares.foundation.cli.util.Buildable;
+import org.ares.foundation.cli.util.Confirmable;
 import org.ares.foundation.cli.util.template.PackageHandler;
 import org.ares.foundation.cli.util.string.StringUtil;
 import org.ares.foundation.cli.util.template.TemplateBuilder;
@@ -16,7 +17,7 @@ import picocli.CommandLine.Parameters;
         mixinStandardHelpOptions = true,
         customSynopsis = "fo make:cmdgroup <name> | fo make:commandgroup <name> | fo make:cmdgroup <name> <package> | fo make:commandgroup <name> <package>",
         version = "1.0")
-public class CreateCommandGroup implements Runnable, Buildable {
+public class CreateCommandGroup implements Runnable, Buildable, Confirmable {
 
     @Parameters
     private String name;
@@ -38,13 +39,13 @@ public class CreateCommandGroup implements Runnable, Buildable {
     }
 
     @Override
+    public void confirmSuccessMessage() {
+        System.out.println("Successfully created a new Command Group class!");
+    }
+
+    @Override
     public void run() {
         final String packageName = PackageHandler.createPackage(name, subPackageName.toLowerCase(), PROPERTY_KEY);
-
-        System.out.println("P name: " + packageName);
-
-        System.out.println("HALLOOOHHHHHH");
-
         VelocityContext context = buildContext();
         context.put("PACKAGE_NAME", new YamlHandler().getGroupPackageName(PROPERTY_KEY, packageName));
 
@@ -52,6 +53,8 @@ public class CreateCommandGroup implements Runnable, Buildable {
         TemplateBuilder templateBuilder = new TemplateBuilder(PROPERTY_KEY, StringUtil.addCommandGroupLabel(name), TEMPLATE, context);
         templateBuilder.setSubPackageName(packageName);
         templateBuilder.buildCommandGroup();
+
+        confirmSuccessMessage();
     }
 
 }

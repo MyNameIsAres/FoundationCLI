@@ -2,6 +2,7 @@ package org.ares.foundation.cli.impl;
 
 import org.apache.velocity.VelocityContext;
 import org.ares.foundation.cli.util.Buildable;
+import org.ares.foundation.cli.util.Confirmable;
 import org.ares.foundation.cli.util.string.StringUtil;
 import org.ares.foundation.cli.util.template.TemplateBuilder;
 import org.ares.foundation.cli.util.template.YamlHandler;
@@ -13,7 +14,7 @@ import picocli.CommandLine.Parameters;
         mixinStandardHelpOptions = true,
         customSynopsis = "fo make:enchantment <name> | fo make:ec <name>",
         version = "1.0")
-public class CreateSimpleEnchantment implements Runnable, Buildable {
+public class CreateSimpleEnchantment implements Runnable, Buildable, Confirmable {
 
     @Parameters()
     private String name;
@@ -34,7 +35,14 @@ public class CreateSimpleEnchantment implements Runnable, Buildable {
     }
 
     @Override
+    public void confirmSuccessMessage() {
+        System.out.println("Successfully created a new SimpleEnchantment class!");
+    }
+
+    @Override
     public void run() {
         new TemplateBuilder(PROPERTY_KEY, name, TEMPLATE, buildContext()).buildCommand();
+
+        confirmSuccessMessage();
     }
 }

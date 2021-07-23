@@ -2,6 +2,7 @@ package org.ares.foundation.cli.impl.menu;
 
 import org.apache.velocity.VelocityContext;
 import org.ares.foundation.cli.util.Buildable;
+import org.ares.foundation.cli.util.Confirmable;
 import org.ares.foundation.cli.util.string.StringUtil;
 import org.ares.foundation.cli.util.template.TemplateBuilder;
 import org.ares.foundation.cli.util.template.YamlHandler;
@@ -13,7 +14,7 @@ import picocli.CommandLine.Parameters;
         mixinStandardHelpOptions = true,
         customSynopsis = "fo make:menuquantifiable <name> | fo make:menuq <name>",
         version = "1.0")
-public class CreateMenuQuantifiable implements Runnable, Buildable {
+public class CreateMenuQuantifiable implements Runnable, Buildable, Confirmable {
 
     @Parameters()
     private String name;
@@ -34,8 +35,15 @@ public class CreateMenuQuantifiable implements Runnable, Buildable {
     }
 
     @Override
+    public void confirmSuccessMessage() {
+        System.out.println("Successfully created a new MenuQuantifiable class!");
+    }
+
+    @Override
     public void run() {
-        new TemplateBuilder(PROPERTY_KEY, name, TEMPLATE, buildContext()).buildCommand();
+        new TemplateBuilder(PROPERTY_KEY, StringUtil.addMenuLabel(name), TEMPLATE, buildContext()).buildCommand();
+
+        confirmSuccessMessage();
     }
 }
 

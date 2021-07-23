@@ -2,6 +2,7 @@ package org.ares.foundation.cli.impl.tool;
 
 import org.apache.velocity.VelocityContext;
 import org.ares.foundation.cli.util.Buildable;
+import org.ares.foundation.cli.util.Confirmable;
 import org.ares.foundation.cli.util.string.StringUtil;
 import org.ares.foundation.cli.util.template.TemplateBuilder;
 import org.ares.foundation.cli.util.template.YamlHandler;
@@ -13,7 +14,7 @@ import picocli.CommandLine.Command;
         mixinStandardHelpOptions = true,
         customSynopsis = "fo make:rocket <name>",
         version = "1.0")
-public class CreateRocket implements Runnable, Buildable {
+public class CreateRocket implements Runnable, Buildable, Confirmable {
 
     @CommandLine.Parameters()
     private String name;
@@ -34,8 +35,15 @@ public class CreateRocket implements Runnable, Buildable {
     }
 
     @Override
+    public void confirmSuccessMessage() {
+        System.out.println("Successfully created a new Rocket class!");
+    }
+
+    @Override
     public void run() {
-        new TemplateBuilder(PROPERTY_KEY, name, TEMPLATE, buildContext()).buildCommand();
+        new TemplateBuilder(PROPERTY_KEY, StringUtil.addRocketLabel(name), TEMPLATE, buildContext()).buildCommand();
+
+        confirmSuccessMessage();
     }
 
 }

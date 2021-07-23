@@ -43,8 +43,11 @@ public class FoundationCLI implements Runnable{
         System.out.println("Please check the Wiki below for a complete list of all possible commands.");
         System.out.println("Join the community on https://www.skool.com/project-orion");
         System.out.println();
-        System.out.println("This project is still in development. Please report an issue <link>");
-        System.out.println("The code quality of this project is to be improved in the coming weeks.");
+        System.out.println("This project is still in development. Please report any issues here: \n" +
+                "https://github.com/MyNameIsAres/FoundationCLI/issues");
+        System.out.println("");
+        System.out.println("Check the complete Wiki for this project here: \n" + "https://github.com/MyNameIsAres/FoundationCLI-JAR/wiki");
+        System.out.println("");
         System.out.println("==============================");
     }
 
